@@ -1,0 +1,31 @@
+{
+    "name": "ezu_url",
+    "private": true,
+    "workspaces": [
+        "apps/*"
+    ],
+    "scripts": {
+        "dev": "turbo run dev",
+        "dev:web": "turbo run dev --filter=web --parallel",
+        "dev:api": "turbo run dev --filter=api --parallel",
+        "docker:up": "turbo run docker:up --filter=api --parallel",
+        "seed:superAdmin": "turbo run seed:superAdmin --filter=api --parallel",
+        "build": "turbo run build",
+        "lint": "turbo run lint",
+        "check-types": "turbo run check-types",
+        "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    },
+    "dependencies": {
+        "zod": "^4.3.6"
+    },
+    "devDependencies": {
+        "eslint": "^9.39.2",
+        "eslint-config-prettier": "^10.1.8",
+        "prettier": "^3.8.1",
+        "turbo": "^2.8.1"
+    },
+    "packageManager": "npm@11.8.0",
+    "engines": {
+        "node": ">=18"
+    }
+}

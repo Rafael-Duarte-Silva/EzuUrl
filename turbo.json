@@ -1,0 +1,26 @@
+{
+    "$schema": "https://turbo.build/schema.json",
+    "tasks": {
+        "dev": {
+            "cache": false,
+            "persistent": true
+        },
+        "docker:up": {
+            "outputs": []
+        },
+        "seed:superAdmin": {
+            "outputs": []
+        },
+        "build": {
+            "dependsOn": ["^build"],
+            "outputs": ["dist/**", ".next/**", "!.next/cache/**", "build/**"]
+        },
+        "lint": {
+            "outputs": []
+        },
+        "test": {
+            "outputs": []
+        }
+    }
+}
+
