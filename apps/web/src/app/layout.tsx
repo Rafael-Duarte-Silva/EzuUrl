@@ -10,6 +10,7 @@ export const metadata: Metadata = {
 
 const geist = Geist({
     subsets: ["latin"],
+    variable: "--font-geist",
 });
 
 export default function RootLayout({
@@ -19,7 +20,9 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="pt-BR">
-            <body className={`${geist.className} antialiased`}>
+            <body
+                className={`${geist.className} ${geist.variable} antialiased`}
+            >
                 <ReactQueryProvider>{children}</ReactQueryProvider>
             </body>
         </html>

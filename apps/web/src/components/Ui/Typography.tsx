@@ -3,7 +3,7 @@ import { tv, type VariantProps } from "tailwind-variants";
 import { PolymorphicProps } from "../types";
 
 const typography = tv({
-    base: "font-altone",
+    base: "font-geist",
     variants: {
         size: {
             sm: "text-sm",

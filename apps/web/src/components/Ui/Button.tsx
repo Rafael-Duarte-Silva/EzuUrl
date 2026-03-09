@@ -3,7 +3,7 @@ import { tv, type VariantProps } from "tailwind-variants";
 import { PolymorphicProps } from "../types";
 
 const button = tv({
-    base: "font-altone transition font-semibold inline-flex items-center justify-center",
+    base: "font-geist transition font-semibold inline-flex items-center justify-center",
     variants: {
         variant: {
             primary: "bg-primary text-zero hover:bg-primary-light",
