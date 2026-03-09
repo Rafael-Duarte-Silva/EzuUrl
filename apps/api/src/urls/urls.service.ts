@@ -11,12 +11,12 @@ const ALPHABET =
 const hashIds = new Hashids(SALT, MIN_LENGTH, ALPHABET);
 
 export const createShortUrlService = async (
-    long_url: string,
+    longUrl: string,
 ): Promise<string> => {
     const urlCounter = await redisClient.incr("url_counter");
     const urlCode = hashIds.encode(urlCounter);
 
-    await createUrlRepository(urlCode, Date.now(), long_url);
+    await createUrlRepository(urlCode, Date.now(), longUrl);
 
     return urlCode;
 };
