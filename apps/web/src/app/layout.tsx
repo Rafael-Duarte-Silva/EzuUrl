@@ -1,8 +1,10 @@
 import { Geist } from "next/font/google";
 import type { Metadata } from "next";
+import "../styles/globals.css";
+import { ReactQueryProvider } from "../providers/QueryClientProvider";
 
 export const metadata: Metadata = {
-    title: "",
+    title: "EzuUrl",
     description: "",
 };
 
@@ -17,7 +19,9 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="pt-BR">
-            <body className={`${geist.className} antialiased`}>{children}</body>
+            <body className={`${geist.className} antialiased`}>
+                <ReactQueryProvider>{children}</ReactQueryProvider>
+            </body>
         </html>
     );
 }
