@@ -25,6 +25,6 @@ export const getUrlByCodeService = async (code: string): Promise<string> => {
     const result = await getUrlByCodeRepository(code);
     if (!result) return result;
 
-    return `https://${result.long_url}`;
+    return result.long_url;
 };
 

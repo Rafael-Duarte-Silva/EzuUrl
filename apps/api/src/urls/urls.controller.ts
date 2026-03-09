@@ -10,7 +10,7 @@ export const createShortUrl = async (
     const body = createUrlSchema.safeParse(req.body);
     if (!body.success) return res.status(400).json({ message: "Invalid Data" });
 
-    const urlCode = await createShortUrlService(body.data.long_url);
+    const urlCode = await createShortUrlService(body.data.longUrl);
 
     return res
         .status(200)

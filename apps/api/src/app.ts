@@ -16,6 +16,7 @@ app.use(
     cors({
         origin: `${config.nodeEnv === "development" ? "http" : "https"}://${config.webDomain}`,
         credentials: true,
+        exposedHeaders: ["Location"],
     }),
 );
 
