@@ -3,7 +3,7 @@ import { tv, type VariantProps } from "tailwind-variants";
 import { PolymorphicProps } from "../types";
 
 const button = tv({
-    base: "font-altone rounded-lg transition font-semibold inline-flex items-center justify-center",
+    base: "font-altone transition font-semibold inline-flex items-center justify-center",
     variants: {
         variant: {
             primary: "bg-primary text-zero hover:bg-primary-light",
@@ -13,14 +13,17 @@ const button = tv({
             md: "px-4 py-2",
             lg: "px-6 py-3",
         },
+        radius: {
+            lg: "rounded-lg",
+        },
         disabled: {
             true: "cursor-not-allowed",
         },
     },
-
     defaultVariants: {
         variant: "primary",
         size: "md",
+        radius: "lg",
     },
 });
 
@@ -37,6 +40,7 @@ export const Button = <T extends ElementType = "button">({
     children,
     variant,
     size,
+    radius,
     disabled,
     ...props
 }: ButtonProps<T>) => {
@@ -47,6 +51,7 @@ export const Button = <T extends ElementType = "button">({
             className={button({
                 variant,
                 size,
+                radius,
                 disabled,
                 className,
             })}
