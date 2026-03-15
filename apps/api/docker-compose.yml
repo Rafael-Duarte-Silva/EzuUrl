@@ -1,0 +1,39 @@
+services:
+    cassandra:
+        image: cassandra:latest
+        container_name: cassandra
+        ports:
+            - "9042:9042"
+        restart: always
+        volumes:
+            - ./out/cassandra_data:/var/lib/cassandra
+        healthcheck:
+            test:
+                [
+                    "CMD",
+                    "cqlsh",
+                    "-u cassandra",
+                    "-p cassandra",
+                    "-e describe keyspaces",
+                ]
+            interval: 15s
+            timeout: 10s
+            retries: 10
+
+    cassandra-load-keyspace:
+        container_name: cassandra-load-keyspace
+        image: cassandra:latest
+        depends_on:
+            cassandra:
+                condition: service_healthy
+        volumes:
+            - ./init.cql:/init.cql
+        command: /bin/bash -c "echo loading cassandra keyspace && cqlsh cassandra -f /init.cql"
+
+    redis:
+        image: redis:latest
+        container_name: redis
+        restart: always
+        ports:
+            - "6379:6379"
+
