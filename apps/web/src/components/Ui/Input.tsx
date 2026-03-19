@@ -3,11 +3,12 @@ import { tv } from "tailwind-variants";
 import { Typography } from "./Typography";
 
 const input = tv({
-    base: "px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 transition",
+    base: "w-full px-4 py-3 text-sm rounded-lg bg-black/40 border outline-none transition-all",
     variants: {
         variant: {
-            default: "border-secondary focus:ring-primary-light",
-            error: "border-red-400 focus:ring-red-400",
+            default:
+                "border-white/10 focus:border-blue-500 focus:ring-1 focus:ring-blue-500",
+            error: "border-red-400 focus:border-red-400 focus:ring-1 focus:ring-red-400",
         },
     },
     defaultVariants: {
@@ -35,9 +36,8 @@ export const Input = ({
                 <Typography
                     as="label"
                     htmlFor={id}
-                    size="md"
-                    weight="semiBold"
-                    className="text-primary"
+                    size="sm"
+                    className="text-gray-300"
                 >
                     {label}
                 </Typography>
@@ -55,8 +55,8 @@ export const Input = ({
             {error && (
                 <Typography
                     as="span"
-                    size="sm"
-                    className="text-red-500"
+                    size="xs"
+                    className="text-red-400"
                 >
                     {error}
                 </Typography>
@@ -64,3 +64,4 @@ export const Input = ({
         </div>
     );
 };
+

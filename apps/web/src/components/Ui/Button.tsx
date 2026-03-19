@@ -3,21 +3,24 @@ import { tv, type VariantProps } from "tailwind-variants";
 import { PolymorphicProps } from "../types";
 
 const button = tv({
-    base: "font-geist transition font-semibold inline-flex items-center justify-center",
+    base: "font-geist transition-all font-medium inline-flex items-center justify-center select-none",
     variants: {
         variant: {
-            primary: "bg-primary text-zero hover:bg-primary-light",
-            secondary: "bg-primary-light text-zero hover:bg-primary",
+            primary:
+                "bg-blue-600 text-white hover:bg-blue-500 shadow-lg shadow-blue-600/30",
+            ghost: "bg-white/10 text-white hover:bg-white/20",
         },
         size: {
-            md: "px-4 py-2",
-            lg: "px-6 py-3",
+            sm: "text-xs px-3 py-2",
+            md: "text-sm px-4 py-2",
+            lg: "text-sm px-6 py-3",
         },
         radius: {
+            md: "rounded-md",
             lg: "rounded-lg",
         },
         disabled: {
-            true: "cursor-not-allowed",
+            true: "opacity-50 cursor-not-allowed hover:none",
         },
     },
     defaultVariants: {
@@ -31,6 +34,8 @@ type ButtonProps<T extends ElementType> = PolymorphicProps<
     T,
     VariantProps<typeof button> & {
         children?: ReactNode;
+        isLoading?: boolean;
+        isCopied?: boolean;
     }
 >;
 
@@ -42,9 +47,13 @@ export const Button = <T extends ElementType = "button">({
     size,
     radius,
     disabled,
+    isLoading,
+    isCopied,
     ...props
 }: ButtonProps<T>) => {
     const Component = as || "button";
+
+    const isDisabled = disabled || isLoading;
 
     return (
         <Component
@@ -52,13 +61,13 @@ export const Button = <T extends ElementType = "button">({
                 variant,
                 size,
                 radius,
-                disabled,
+                disabled: isDisabled,
                 className,
             })}
-            disabled={disabled}
+            disabled={isDisabled}
             {...props}
         >
-            {children}
+            {isLoading ? "Encurtando..." : isCopied ? "Copiado" : children}
         </Component>
     );
 };
