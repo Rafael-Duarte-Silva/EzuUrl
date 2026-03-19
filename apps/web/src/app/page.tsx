@@ -86,7 +86,7 @@ export default function HomePage() {
 
                         <Button
                             type="submit"
-                            isLoading={isPending}
+                            disabled={isPending}
                             size="lg"
                             className="w-full"
                         >
@@ -106,7 +106,6 @@ export default function HomePage() {
                             <Button
                                 variant="ghost"
                                 size="sm"
-                                isCopied={isCopy}
                                 onClick={() => {
                                     navigator.clipboard.writeText(shortUrl);
                                     setIsCopy(true);

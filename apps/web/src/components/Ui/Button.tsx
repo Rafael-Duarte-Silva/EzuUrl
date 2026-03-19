@@ -34,8 +34,6 @@ type ButtonProps<T extends ElementType> = PolymorphicProps<
     T,
     VariantProps<typeof button> & {
         children?: ReactNode;
-        isLoading?: boolean;
-        isCopied?: boolean;
     }
 >;
 
@@ -47,13 +45,9 @@ export const Button = <T extends ElementType = "button">({
     size,
     radius,
     disabled,
-    isLoading,
-    isCopied,
     ...props
 }: ButtonProps<T>) => {
     const Component = as || "button";
-
-    const isDisabled = disabled || isLoading;
 
     return (
         <Component
@@ -61,13 +55,13 @@ export const Button = <T extends ElementType = "button">({
                 variant,
                 size,
                 radius,
-                disabled: isDisabled,
+                disabled,
                 className,
             })}
-            disabled={isDisabled}
+            disabled={disabled}
             {...props}
         >
-            {isLoading ? "Encurtando..." : isCopied ? "Copiado" : children}
+            {children}
         </Component>
     );
 };
